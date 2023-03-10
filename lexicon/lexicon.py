@@ -13,3 +13,12 @@ LEXICON_COMMANDS_FOR_MENU: dict[str, str] = {
     '/start': MENU_IN_THE_WORK,
     '/help': MENU_IN_THE_WORK
 }
+
+LEXICON_FOR_INDICATION: dict[str, str] = {
+    'student': 'Студент',
+    'employee': 'Сотрудник'
+}
+
+LEXICON_FOR_USERS: dict[str, str] = {
+
+}
