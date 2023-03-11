@@ -1,6 +1,6 @@
 from aiogram import Router
-from aiogram.filters import CommandStart, Command
-from aiogram.types import Message
+from aiogram.filters import CommandStart, Command, Text
+from aiogram.types import Message, CallbackQuery
 from lexicon.lexicon import LEXICON_COMMANDS
 from keyboards.keyboards_start import main_kb
 from handlers import student_handlers
@@ -31,3 +31,11 @@ async def process_help_command(message: Message):
     :return: LEXICON['/help']
     """
     await message.answer(text=LEXICON_COMMANDS['/help'])
+
+
+@main_router.callback_query(Text(text=['back_after_start_for_students']))
+async def process_back_command(callback: CallbackQuery):
+    await callback.message.edit_text(text=LEXICON_COMMANDS['/start'],
+                                     reply_markup=main_kb(
+                                         'student', 'employee'
+                                     ))

@@ -15,5 +15,6 @@ async def process_student_press(callback: CallbackQuery):
     """
     await callback.message.edit_text(
         text=LEXICON_FOR_STUDENTS['after_start_for_students'],
-        reply_markup=main_students_kb('timetable', 'order_certificates', 'student card')
+        reply_markup=main_students_kb('timetable', 'order_certificates', 'student card',
+                                      'back_after_start_for_students')
     )

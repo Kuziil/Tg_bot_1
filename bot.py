@@ -1,15 +1,27 @@
 import asyncio
+import logging
 
 from aiogram import Bot, Dispatcher
 from config_data.config import Config, load_config
 from handlers import main_handlers, other_handlers
 from keyboards.main_menu import set_main_menu
 
+logger = logging.getLogger(__name__)
+
 
 async def main():
     """
     Функция конфигурирования и запуска бота
     """
+    # Конфигурируем логирование
+    logging.basicConfig(
+        level=logging.INFO,
+        format=u'%(filename)s:%(lineno)d #%(levelname)-8s '
+               u'[%(asctime)s] - %(name)s - %(message)s')
+
+    # Выводим в консоль информацию о начале запуска бота
+    logger.info('Starting bot')
+
     # инициализация бота и диспетчера
     config: Config = load_config()
     bot: Bot = Bot(token=config.tg_bot.token,
