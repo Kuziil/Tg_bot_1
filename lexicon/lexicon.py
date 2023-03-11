@@ -1,5 +1,6 @@
 IN_THE_WORKS: str = ' еще в разработке'
 MENU_IN_THE_WORK: str = 'еще не переданы краткие пояснения'
+
 LEXICON: dict[str, str] = {
     'other_answer': 'Не понимаю, что вы имеете ввиду'
 }
@@ -18,6 +19,13 @@ LEXICON_FOR_INDICATION: dict[str, str] = {
     'student': 'Студент',
     'employee': 'Сотрудник',
     'еп': 'ноп'
+}
+
+LEXICON_FOR_STUDENTS: dict[str, str] = {
+    'after_start_for_students': 'Выберите интересующий вас раздел:',
+    'timetable': 'Расписание',
+    'order_certificates': 'Заказ справок',
+    'student card': 'Студенческий билет'
 }
 
 LEXICON_FOR_USERS: dict[str, str] = {
