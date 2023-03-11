@@ -16,7 +16,8 @@ LEXICON_COMMANDS_FOR_MENU: dict[str, str] = {
 
 LEXICON_FOR_INDICATION: dict[str, str] = {
     'student': 'Студент',
-    'employee': 'Сотрудник'
+    'employee': 'Сотрудник',
+    'еп': 'ноп'
 }
 
 LEXICON_FOR_USERS: dict[str, str] = {
