@@ -25,7 +25,8 @@ LEXICON_FOR_STUDENTS: dict[str, str] = {
     'after_start_for_students': 'Выберите интересующий вас раздел:',
     'timetable': 'Расписание',
     'order_certificates': 'Заказ справок',
-    'student card': 'Студенческий билет'
+    'student card': 'Студенческий билет',
+    'back': 'Назад'
 }
 
 LEXICON_FOR_USERS: dict[str, str] = {

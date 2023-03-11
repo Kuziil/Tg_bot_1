@@ -2,7 +2,7 @@ from aiogram import Router
 from aiogram.filters import CommandStart, Command
 from aiogram.types import Message
 from lexicon.lexicon import LEXICON_COMMANDS
-from keyboards.keyboards_start import user_identifier
+from keyboards.keyboards_start import main_kb
 from handlers import student_handlers
 
 main_router: Router = Router()
@@ -18,7 +18,7 @@ async def process_start_command(message: Message):
     :return: Предлагает сделать выбор, кем вы являетесь в вузе, через инлайн кнопки
     """
     await message.answer(text=LEXICON_COMMANDS['/start'],
-                         reply_markup=user_identifier(
+                         reply_markup=main_kb(
                              'student', 'employee'
                          ))
 
