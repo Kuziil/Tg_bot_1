@@ -12,15 +12,29 @@ config: Config = load_config()
 
 @employee_router.callback_query(Text(text='employee'))
 async def process_employee_press(callback: CallbackQuery):
+    """
+    Этот хэндлер срабатывает при выборе кнопки 'Сотрудник'.
+    :param callback:
+    :return: Предлагает отправить номер телефона
+    """
     await callback.message.answer(text=LEXICON_FOR_EMPLOYEE['send_tel_up'], reply_markup=markup_tel)
 
 
 @employee_router.message(F.contact.phone_number.in_(config.tg_bot.employee_contact))
 async def process_true_contact(message: Message):
-    await message.answer(text='Верно')
+    """
+    Этот хэндлер проверяет номер телефона и если он есть в бд, то отвечает Верно.
+    :param message:
+    :return:
+    """
+    await message.answer(text=LEXICON_FOR_EMPLOYEE['contact_true'])
 
 
 @employee_router.message(F.contact)
 async def process_false_contact(message: Message):
-    print(message)
-    await message.answer(text='Не верно')
+    """
+    Этот хэндлер отлавливает остальные номера телефона, которых нет в бд.
+    :param message:
+    :return:
+    """
+    await message.answer(text=LEXICON_FOR_EMPLOYEE['contact_false'])

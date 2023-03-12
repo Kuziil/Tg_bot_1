@@ -36,6 +36,11 @@ async def process_help_command(message: Message):
 
 @main_router.callback_query(Text(text=['back_after_start_for_students']))
 async def process_back_command(callback: CallbackQuery):
+    """
+    Этот хэндлер возвращает /start
+    :param callback:
+    :return:
+    """
     await callback.message.edit_text(text=LEXICON_COMMANDS['/start'],
                                      reply_markup=main_kb(
                                          'student', 'employee'
