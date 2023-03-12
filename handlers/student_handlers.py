@@ -46,3 +46,11 @@ async def process_student_card_push(callback: CallbackQuery):
         text=LEXICON_FOR_STUDENTS['where_to_get_a_student_card'],
         reply_markup=main_students_kb('back_after_certificates_for_students')
     )
+
+
+@student_router.callback_query(Text(text='timetable'))
+async def process_timetable_push(callback: CallbackQuery):
+    await callback.message.edit_text(
+        text=LEXICON_FOR_STUDENTS['what_date'],
+        reply_markup=main_students_kb('back_after_certificates_for_students')
+    )

@@ -24,6 +24,7 @@ LEXICON_FOR_INDICATION: dict[str, str] = {
 LEXICON_FOR_STUDENTS: dict[str, str] = {
     'after_start_for_students': 'Выберите интересующий вас раздел:',
     'timetable': 'Расписание',
+    'what_date': 'Выберете интересующую дату',
     'order_certificates': 'Заказ справок',
     'where_to_get_a_student_card': IN_THE_WORKS,
     'what_kind_of_certificates': 'Какую справку требуется заказать?',
