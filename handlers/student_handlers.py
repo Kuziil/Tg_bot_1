@@ -12,6 +12,7 @@ student_router: Router = Router()
 async def process_student_press(callback: CallbackQuery):
     """
     Этот хэндлер срабатывает при нажатии кнопки 'Студент' и обрабатывает этот запрос.
+    Также является обработчиком кнопки назад.
     :return: Возвращает новые кнопки заменяя текст над сообщением и новые кнопки
     """
     await callback.message.edit_text(
@@ -27,8 +28,21 @@ async def process_order_certificates_push(callback: CallbackQuery):
     Этот хэндлер срабатывает при нажатии кнопки 'Заказ справок' и обрабатывает этот запрос.
     :return: Предлагает выбрать интересующие справки
     """
-    print(callback, sep='\n')
     await callback.message.edit_text(
         text=LEXICON_FOR_STUDENTS['what_kind_of_certificates'],
         reply_markup=main_students_kb('certificates_1', 'certificates_2', 'certificates_3',
                                       'back_after_certificates_for_students'))
+
+
+@student_router.callback_query(Text(text='student card'))
+async def process_student_card_push(callback: CallbackQuery):
+    """
+    Этот хэндлер срабатывает при нажатии кнопки 'Студенческий билет' и обрабатывает этот запрос.
+    :param callback:
+    :return: Местоположение где можно обновить справку
+    """
+    # TODO найти информацию про студенческий билет и дополнить
+    await callback.message.edit_text(
+        text=LEXICON_FOR_STUDENTS['where_to_get_a_student_card'],
+        reply_markup=main_students_kb('back_after_certificates_for_students')
+    )

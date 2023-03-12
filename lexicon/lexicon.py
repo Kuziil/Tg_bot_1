@@ -25,11 +25,12 @@ LEXICON_FOR_STUDENTS: dict[str, str] = {
     'after_start_for_students': 'Выберите интересующий вас раздел:',
     'timetable': 'Расписание',
     'order_certificates': 'Заказ справок',
+    'where_to_get_a_student_card': IN_THE_WORKS,
     'what_kind_of_certificates': 'Какую справку требуется заказать?',
     'certificates_1': 'С места учебы',
     'certificates_2': 'Копия диплома',
     'certificates_3': 'Оригинал диплома',
-    'back_after_certificates_for_students': BACK + '1',
+    'back_after_certificates_for_students': BACK,
     'student card': 'Студенческий билет',
     'back_after_start_for_students': BACK
 }
