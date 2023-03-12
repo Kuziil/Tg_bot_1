@@ -3,10 +3,11 @@ from aiogram.filters import CommandStart, Command, Text
 from aiogram.types import Message, CallbackQuery
 from lexicon.lexicon import LEXICON_COMMANDS
 from keyboards.keyboards_start import main_kb
-from handlers import student_handlers
+from handlers import student_handlers, employee_handlers
 
 main_router: Router = Router()
 main_router.include_router(student_handlers.student_router)
+main_router.include_router(employee_handlers.employee_router)
 
 
 @main_router.message(CommandStart())

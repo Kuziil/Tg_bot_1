@@ -36,6 +36,7 @@ LEXICON_FOR_STUDENTS: dict[str, str] = {
     'back_after_start_for_students': BACK
 }
 
-LEXICON_FOR_USERS: dict[str, str] = {
-
+LEXICON_FOR_EMPLOYEE: dict[str, str] = {
+    'send_tel': 'Отправь номер телефона',
+    'send_tel_up': 'Для авторизации нажмите на появившуюся под строкой ввода кнопку "Отправить номер телефона"📱'
 }
