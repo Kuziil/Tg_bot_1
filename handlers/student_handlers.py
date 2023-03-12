@@ -3,6 +3,7 @@ from aiogram.filters import Text
 from aiogram.types import CallbackQuery
 from keyboards.keyboards_for_students import main_students_kb
 from lexicon.lexicon import LEXICON_FOR_STUDENTS
+from keyboards.timetable import timetable_kb
 
 student_router: Router = Router()
 
@@ -52,5 +53,5 @@ async def process_student_card_push(callback: CallbackQuery):
 async def process_timetable_push(callback: CallbackQuery):
     await callback.message.edit_text(
         text=LEXICON_FOR_STUDENTS['what_date'],
-        reply_markup=main_students_kb('back_after_certificates_for_students')
+        reply_markup=timetable_kb()
     )
