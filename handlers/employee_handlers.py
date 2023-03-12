@@ -2,6 +2,7 @@ from aiogram import Router, F
 from aiogram.types import CallbackQuery, Message
 from aiogram.filters import Text
 from keyboards.keyboards_for_employee import markup_tel
+from aiogram.types import ReplyKeyboardRemove
 from lexicon.lexicon import LEXICON_FOR_EMPLOYEE
 from config_data.config import Config, load_config
 
@@ -27,7 +28,7 @@ async def process_true_contact(message: Message):
     :param message:
     :return:
     """
-    await message.answer(text=LEXICON_FOR_EMPLOYEE['contact_true'])
+    await message.answer(text=LEXICON_FOR_EMPLOYEE['contact_true'], reply_markup=ReplyKeyboardRemove())
 
 
 @employee_router.message(F.contact)
@@ -37,4 +38,5 @@ async def process_false_contact(message: Message):
     :param message:
     :return:
     """
-    await message.answer(text=LEXICON_FOR_EMPLOYEE['contact_false'])
+
+    await message.answer(text=LEXICON_FOR_EMPLOYEE['contact_false'], reply_markup=ReplyKeyboardRemove())
