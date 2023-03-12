@@ -55,3 +55,8 @@ async def process_timetable_push(callback: CallbackQuery):
         text=LEXICON_FOR_STUDENTS['what_date'],
         reply_markup=timetable_kb()
     )
+
+
+@student_router.callback_query(lambda x: True if x.data in ['IGNORE', 'backward_for_tb', 'forward_for_tb'] else False)
+async def process_nonfunctional_timetable_buttons_push(callback: CallbackQuery):
+    await callback.answer()

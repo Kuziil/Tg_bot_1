@@ -23,7 +23,7 @@ def timetable_kb(year: int = datetime.now().year,
                 buttons.append(InlineKeyboardButton(text=" ", callback_data=ignore_callback))
                 continue
             buttons.append(InlineKeyboardButton(
-                text=str(day), callback_data=str(day) + '_timetable'
+                text=str(day), callback_data=ignore_callback  # str(day) + '_timetable'
             ))
     kb_builder.row(*buttons, width=7)
     return kb_builder.as_markup()
