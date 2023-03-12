@@ -37,6 +37,11 @@ async def process_order_certificates_push(callback: CallbackQuery):
 
 @student_router.callback_query(F.text.in_(['certificates_1', 'certificates_2', 'certificates_3']))
 async def in_the_work(callback: CallbackQuery):
+    """
+    Временный хэндлер пока не будет обновлен функционал этих кнопок
+    :param callback:
+    :return:
+    """
     await callback.answer()
 
 
