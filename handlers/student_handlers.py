@@ -1,4 +1,4 @@
-from aiogram import Router
+from aiogram import Router, F
 from aiogram.filters import Text
 from aiogram.types import CallbackQuery
 from keyboards.keyboards_for_students import main_students_kb
@@ -33,6 +33,11 @@ async def process_order_certificates_push(callback: CallbackQuery):
         text=LEXICON_FOR_STUDENTS['what_kind_of_certificates'],
         reply_markup=main_students_kb('certificates_1', 'certificates_2', 'certificates_3',
                                       'back_after_certificates_for_students'))
+
+
+@student_router.callback_query(F.text.in_(['certificates_1', 'certificates_2', 'certificates_3']))
+async def in_the_work(callback: CallbackQuery):
+    await callback.answer()
 
 
 @student_router.callback_query(Text(text='student card'))
