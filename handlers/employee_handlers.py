@@ -28,6 +28,7 @@ async def process_true_contact(message: Message):
     :param message:
     :return:
     """
+    print(message.contact)
     await message.answer(text=LEXICON_FOR_EMPLOYEE['contact_true'], reply_markup=ReplyKeyboardRemove())
 
 
@@ -38,5 +39,4 @@ async def process_false_contact(message: Message):
     :param message:
     :return:
     """
-
     await message.answer(text=LEXICON_FOR_EMPLOYEE['contact_false'], reply_markup=ReplyKeyboardRemove())
