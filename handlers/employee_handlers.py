@@ -4,11 +4,8 @@ from aiogram.filters import Text
 from keyboards.keyboards_for_employee import markup_tel
 from aiogram.types import ReplyKeyboardRemove
 from lexicon.lexicon import LEXICON_FOR_EMPLOYEE
-from config_data.config import Config, load_config
 
 employee_router: Router = Router()
-
-config: Config = load_config()
 
 
 @employee_router.callback_query(Text(text='employee'))
@@ -21,7 +18,7 @@ async def process_employee_press(callback: CallbackQuery):
     await callback.message.answer(text=LEXICON_FOR_EMPLOYEE['send_tel_up'], reply_markup=markup_tel)
 
 
-@employee_router.message(F.contact.phone_number.in_(config.tg_bot.employee_contact))
+@employee_router.message(F.contact.phone_number.in_(['89137263886', '79137263886', '+79137263886']))
 async def process_true_contact(message: Message):
     """
     Этот хэндлер проверяет номер телефона и если он есть в бд, то отвечает Верно.
