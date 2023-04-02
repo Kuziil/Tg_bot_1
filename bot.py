@@ -1,32 +1,42 @@
-import asyncio
+import logging
 import json
 import os
 
 from aiogram import Bot, Dispatcher, types
 from handlers import main_handlers, other_handlers
+
 from keyboards.main_menu import set_main_menu
 
+# Logger initialization and logging level setting
+log = logging.getLogger(__name__)
+log.setLevel(os.environ.get('LOGGING_LEVEL', 'INFO').upper())
 
-async def main(update):
-    # инициализация бота и диспетчера
-    bot: Bot = Bot(token=os.environ.get('TOKEN'),
-                   parse_mode='HTML')  # parse_mode='HTML' - поддержка HTML тегов
-    dp: Dispatcher = Dispatcher()
+# Create an instance of the Bot and Dispatcher
+bot = Bot(os.environ.get('TOKEN'))
+dp = Dispatcher()
+
+dp.include_router(main_handlers.main_router)
+dp.include_router(other_handlers.router)
+
+
+# Functions for Yandex.Cloud
+async def process_event(event):
+    """
+    Converting an Yandex.Cloud functions event to an update and
+    handling tha update.
+    """
+    update = types.Update.parse_obj(json.loads(event['body']))
+    log.debug('Update: ' + str(update))
 
     await set_main_menu(bot)
-
-    # регистрация роутеров в диспетчере
-    dp.include_router(main_handlers.main_router)
-    dp.include_router(other_handlers.router)
-
-    await dp.feed_update(bot=bot, update=update)
+    await dp.feed_update(bot, update)
 
 
-def starting_point(event, _):
-    update = json.loads(event['body'])
-    update = types.Update.parse_obj(update)
-    asyncio.run(main(update))  # запуск функции main
-    return {
-        'statusCode': 200,
-        'body': '!',
-    }
+async def handler(event, context):
+    """Yandex.Cloud functions handler."""
+    log.debug('ev method:' + str(event['httpMethod']))
+    if event['httpMethod'] == 'POST':
+        await process_event(event)
+
+        return {'statusCode': 200, 'body': 'ok'}
+    return {'statusCode': 405}
