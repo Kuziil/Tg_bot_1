@@ -31,7 +31,7 @@ logger.addHandler(handler)
 logger.setLevel(logging.DEBUG)
 
 # Create an instance of the Bot and Dispatcher
-bot = Bot(os.environ.get('TOKEN'))
+bot = Bot(os.environ.get('TOKEN'), parse_mode='HTML')
 dp = Dispatcher()
 
 dp.include_router(main_handlers.main_router)
