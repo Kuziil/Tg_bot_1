@@ -1,15 +1,34 @@
 import logging
 import json
 import os
+import sys
 
 from aiogram import Bot, Dispatcher, types
 from handlers import main_handlers, other_handlers
 
 from keyboards.main_menu import set_main_menu
 
-# Logger initialization and logging level setting
-log = logging.getLogger(__name__)
-log.setLevel(os.environ.get('LOGGING_LEVEL', 'INFO').upper())
+
+class CustomJSONFormatter(logging.Formatter):
+    def format(self, record):
+        log_record = {
+            'time': self.formatTime(record),
+            'level': record.levelname,
+            'message': record.getMessage(),
+        }
+        return json.dumps(log_record)
+
+
+logger = logging.getLogger()
+logger.handlers.clear()  # удаляем все обработчики логов по умолчанию
+
+handler = logging.StreamHandler(sys.stdout)
+formatter = CustomJSONFormatter()
+handler.setFormatter(formatter)
+handler.setLevel(logging.DEBUG)  # устанавливаем уровень логирования для консольного обработчика
+
+logger.addHandler(handler)
+logger.setLevel(logging.DEBUG)
 
 # Create an instance of the Bot and Dispatcher
 bot = Bot(os.environ.get('TOKEN'))
@@ -26,15 +45,16 @@ async def process_event(event):
     handling tha update.
     """
     update = types.Update.parse_obj(json.loads(event['body']))
-    log.debug('Update: ' + str(update))
+    # log.debug('Update: ' + str(update))
+    logging.info('Hellооооo')
 
     await set_main_menu(bot)
     await dp.feed_update(bot, update)
 
 
-async def handler(event, context):
+async def my_handler(event, context):
     """Yandex.Cloud functions handler."""
-    log.debug('ev method:' + str(event['httpMethod']))
+    logging.debug('helo2222')
     if event['httpMethod'] == 'POST':
         await process_event(event)
 
