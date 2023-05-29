@@ -20,6 +20,11 @@ LEXICON_COMMANDS_FOR_MENU: dict[str, str] = {
 LEXICON_FOR_INDICATION: dict[str, str] = {
     'student': '👨‍🎓Студент👩‍🎓',
     'employee': '👨‍🏫Сотрудник👩‍🏫',
+    'test_api': '🍆Овощи?🍆'
+}
+
+LEXICON_FOR_API: dict[str, str] = {
+    'after_start_for_api': 'Выберите интересующий продукт:'
 }
 
 LEXICON_FOR_STUDENTS: dict[str, str] = {
