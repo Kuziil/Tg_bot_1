@@ -52,7 +52,6 @@ async def process_student_card_push(callback: CallbackQuery):
     :param callback:
     :return: Местоположение где можно обновить справку
     """
-    # TODO найти информацию про студенческий билет и дополнить
     await callback.message.edit_text(
         text=LEXICON_FOR_STUDENTS['where_to_get_a_student_card'],
         reply_markup=main_students_kb('back_after_certificates_for_students')
@@ -61,6 +60,11 @@ async def process_student_card_push(callback: CallbackQuery):
 
 @student_router.callback_query(Text(text='timetable'))
 async def process_timetable_push(callback: CallbackQuery):
+    """
+    Расписание требует доработки.
+    :param callback:
+    :return:
+    """
     await callback.message.edit_text(
         text=LEXICON_FOR_STUDENTS['what_date'],
         reply_markup=timetable_kb()
@@ -69,4 +73,9 @@ async def process_timetable_push(callback: CallbackQuery):
 
 @student_router.callback_query(lambda x: True if x.data in ['IGNORE', 'backward_for_tb', 'forward_for_tb'] else False)
 async def process_nonfunctional_timetable_buttons_push(callback: CallbackQuery):
+    """
+    Временный блокировщик запросов к расписанию
+    :param callback:
+    :return:
+    """
     await callback.answer()

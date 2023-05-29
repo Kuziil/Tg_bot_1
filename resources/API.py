@@ -4,6 +4,7 @@ from urllib3.exceptions import InsecureRequestWarning
 
 api_url = 'https://demo1c.sibstrin.ru/student_mobileapp1_0/hs/products/get_products'
 
+# Прием апдейта и перевод его в dict. Апдейт храниться в response
 try:
     # Отключаем предупреждения о небезопасном соединении и проверке SSL-сертификата
     requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)

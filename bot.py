@@ -10,6 +10,11 @@ from keyboards.main_menu import set_main_menu
 
 
 class CustomJSONFormatter(logging.Formatter):
+    """
+    Этот класс позволяет записывать логи в корректной форме. Это обусловлено тем, что в yc function -> Логи ->
+    есть таблица и в ней столбец урони. Если этого класса не будет, то логи не будут детектиться в этом столбце
+    """
+
     def format(self, record):
         log_record = {
             'time': self.formatTime(record),
@@ -30,10 +35,12 @@ handler.setLevel(logging.DEBUG)  # устанавливаем уровень л�
 logger.addHandler(handler)
 logger.setLevel(logging.DEBUG)
 
-# Create an instance of the Bot and Dispatcher
+# Создайте экземпляр бота и диспетчера, а также указываем каким образом будет происходить форматирование.
+# В данном случае код распознает теги HTML
 bot = Bot(os.environ.get('TOKEN'), parse_mode='HTML')
 dp = Dispatcher()
 
+# Подсоединяем роутеры. Это нужно для того чтобы хэндлеры в других файлах актировались и ловили апдейт.
 dp.include_router(main_handlers.main_router)
 dp.include_router(other_handlers.router)
 
@@ -41,20 +48,18 @@ dp.include_router(other_handlers.router)
 # Functions for Yandex.Cloud
 async def process_event(event):
     """
-    Converting an Yandex.Cloud functions event to an update and
-    handling tha update.
+    Преобразование события функции yc в обновление и
+    обработка этого обновления.
     """
     update = types.Update.parse_obj(json.loads(event['body']))
-    # log.debug('Update: ' + str(update))
-    logging.info('Hellооооo')
+    # logging.debug('Update: ' + str(update))
 
     await set_main_menu(bot)
     await dp.feed_update(bot, update)
 
 
 async def my_handler(event, context):
-    """Yandex.Cloud functions handler."""
-    logging.debug('helo2222')
+    """yc functions handler."""
     if event['httpMethod'] == 'POST':
         await process_event(event)
 

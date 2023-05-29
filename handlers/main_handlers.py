@@ -5,7 +5,9 @@ from lexicon.lexicon import LEXICON_COMMANDS
 from keyboards.keyboards_start import main_kb
 from handlers import student_handlers, employee_handlers, api_handlers
 
+# регистрируем основной роутер
 main_router: Router = Router()
+# создаем новые роутеры и прицепляем их
 main_router.include_router(student_handlers.student_router)
 main_router.include_router(employee_handlers.employee_router)
 main_router.include_router(api_handlers.api_router)

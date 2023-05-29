@@ -7,6 +7,12 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 def timetable_kb(year: int = datetime.now().year,
                  month: int = datetime.now().month) -> InlineKeyboardMarkup:
+    """
+    Создает клавиатуру с расписанием, требует серьезной доработки
+    :param year: Год
+    :param month: Месяц
+    :return:
+    """
     ignore_callback = 'IGNORE'
     kb_builder: InlineKeyboardBuilder = InlineKeyboardBuilder()
     kb_builder.row(InlineKeyboardButton(text='<<', callback_data='backward_for_tb'),

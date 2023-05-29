@@ -36,5 +36,3 @@ async def process_select_response_0(callback: CallbackQuery):
              f"Код: {response[serial_number]['cod']}\n"
              f"Артикул: {response[serial_number]['articul']} ",
     )
-    # reply_markup=main_students_kb('certificates_1', 'certificates_2', 'certificates_3',
-    #                               'back_after_certificates_for_students'))
