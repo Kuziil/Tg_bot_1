@@ -46,5 +46,3 @@ async def process_back_command(callback: CallbackQuery):
                                      reply_markup=main_kb(
                                          'student', 'employee', 'test_api'
                                      ))
-
-
