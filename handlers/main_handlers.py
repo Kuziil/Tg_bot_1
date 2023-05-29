@@ -45,7 +45,7 @@ async def process_back_command(callback: CallbackQuery):
     """
     await callback.message.edit_text(text=LEXICON_COMMANDS['/start'],
                                      reply_markup=main_kb(
-                                         'student', 'employee'
+                                         'student', 'employee', 'test_api'
                                      ))
 
 
